@@ -6,5 +6,5 @@ import lombok.Data;
 public class Phone
 {
     private final PhoneType phoneType;
-    private final int       phoneNumber;
+    private final String phoneNumber;
 }
