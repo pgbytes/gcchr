@@ -19,12 +19,12 @@ import com.gcchr.system.model.User;
 import com.gcchr.system.repository.UserRepository;
 
 @Service
-public class DalUserService
+public class UserService
 {
     private final UserRepository userRepository;
 
     @Autowired
-    public DalUserService(UserRepository userRepository)
+    public UserService(UserRepository userRepository)
     {
         this.userRepository = userRepository;
     }

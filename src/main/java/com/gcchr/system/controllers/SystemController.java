@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcchr.system.model.User;
-import com.gcchr.system.service.DalUserService;
+import com.gcchr.system.service.UserService;
 
 @RestController
 @RequestMapping("/system")
 public class SystemController
 {
-    private final DalUserService userService;
+    private final UserService userService;
 
     @Autowired
-    public SystemController(DalUserService userService)
+    public SystemController(UserService userService)
     {
         this.userService = userService;
     }
