@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @ComponentScan
 @EnableAutoConfiguration
-@PropertySource("classpath:/app-config.properties")
+@PropertySource("classpath:/application.properties")
 public class ApplicationStarter implements CommandLineRunner
 {
     public static void main(String[] args)
