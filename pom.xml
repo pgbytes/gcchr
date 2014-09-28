@@ -4,11 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
     <groupId>com.gcchr</groupId>
     <artifactId>com.gcchr.system</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <name>${project.artifactId}</name>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.1.6.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>com.gcchr.system.dal</module>
+        <module>com.gcchr.system.core</module>
+        <module>com.gcchr.system.common</module>
+    </modules>
+
 
     <properties>
         <skipTests>true</skipTests>
@@ -29,7 +44,7 @@
         <maven.eclipse.plugin-version>2.9</maven.eclipse.plugin-version>
 
         <!-- Application -->
-        <start-class>com.gcchr.system.ApplicationStarter</start-class>
+        <start-class>com.gcchr.system.core.ApplicationStarter</start-class>
         <spring-boot-version>1.1.5.RELEASE</spring-boot-version>
         <spring.data.mongo-version>1.4.1.RELEASE</spring.data.mongo-version>
         <apache-httpclient-version>4.2.3</apache-httpclient-version>
