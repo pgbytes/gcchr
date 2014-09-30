@@ -66,4 +66,27 @@ public class UserService
         patient.setContact(contact);
         saveUser(patient);
     }
+
+    public void saveSamplePatient(String gcchrId, String name)
+    {
+        String gcchr_id = gcchrId;
+        String firstName = name;
+        String lastName = "Patient";
+        Date dob = new Date();
+        Patient patient = new Patient(gcchr_id, firstName, null, lastName, dob);
+        String street = "Street 175";
+        String city = "Lucknow";
+        int zipcode = 123456;
+
+        Address address = new Address(AddressType.HOME, street, zipcode, city);
+        address.setCountry("India");
+        Phone phone = new Phone(PhoneType.MOBILE, "07630527818");
+        Email email = new Email(EmailType.PERSONAL, "testpatient@domain.com");
+        Contact contact = new Contact();
+        contact.setAddresses(Arrays.asList(address));
+        contact.setPhones(Arrays.asList(phone));
+        contact.setEmails(Arrays.asList(email));
+        patient.setContact(contact);
+        saveUser(patient);
+    }
 }
