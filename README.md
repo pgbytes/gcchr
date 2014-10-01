@@ -28,7 +28,7 @@ These are propesed and may change in future.
 BRANCH INFORMATION:
 
 Since this is a pilot application (learning by doing), there are two branches maintained.
-*develop* - will have the normal application with Spring-Boot + mongo db application.
-*reactive-develop* - will have the reactive version of the same application.
+* develop - will have the normal application with Spring-Boot + mongo db application.
+* reactive-develop - will have the reactive version of the same application.
 
 Any suggestions and updates are welcome.
