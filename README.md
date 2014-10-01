@@ -1,4 +1,4 @@
-A sample application for Spring-Boot made reacive with Typesafe Akka framework.
+A sample application for Spring-Boot made reactive with Typesafe Akka framework.
 =====
 
 GCCHR
