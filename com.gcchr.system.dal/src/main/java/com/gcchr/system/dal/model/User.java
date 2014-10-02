@@ -21,14 +21,17 @@ public abstract class User extends AbstractDocument
 
     private final Date dob;
 
+    private final UserType userType;
+
     private Contact contact;
 
-    public User(String gcchr_id, String firstName, @Nullable String middleName, String lastName, Date dob)
+    public User(String gcchr_id, String firstName, @Nullable String middleName, String lastName, Date dob, UserType userType)
     {
         this.gcchr_id = gcchr_id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.dob = dob;
+        this.userType = userType;
     }
 }

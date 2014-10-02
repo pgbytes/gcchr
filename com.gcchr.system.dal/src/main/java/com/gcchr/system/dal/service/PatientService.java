@@ -16,36 +16,33 @@ import com.gcchr.system.dal.model.Patient;
 import com.gcchr.system.dal.model.Phone;
 import com.gcchr.system.dal.model.PhoneType;
 import com.gcchr.system.dal.model.User;
+import com.gcchr.system.dal.model.UserType;
 import com.gcchr.system.dal.repository.PatientRepository;
-import com.gcchr.system.dal.repository.UserRepository;
 
 @Service
-public class UserService
+public class PatientService
 {
-    private final UserRepository userRepository;
-
     private final PatientRepository patientRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PatientRepository patientRepository)
+    public PatientService(PatientRepository patientRepository)
     {
-        this.userRepository = userRepository;
         this.patientRepository = patientRepository;
     }
 
     public User findById(String id)
     {
-        return this.userRepository.findOne(id);
+        return this.patientRepository.findOne(id);
     }
 
-    public List<User> findAll()
+    public List<Patient> findAll()
     {
-        return this.userRepository.findAll();
+        return this.patientRepository.findAll();
     }
 
-    public void saveUser(User user)
+    public void saveUser(Patient patient)
     {
-        this.userRepository.save(user);
+        this.patientRepository.save(patient);
     }
 
     public void saveSamplePatient()
@@ -54,7 +51,8 @@ public class UserService
         String firstName = "Test";
         String lastName = "Patient";
         Date dob = new Date();
-        Patient patient = new Patient(gcchr_id, firstName, null, lastName, dob);
+
+        Patient patient = new Patient(gcchr_id, firstName, null, lastName, dob, UserType.PATIENT);
         String street = "Street 175";
         String city = "Lucknow";
         int zipcode = 123456;

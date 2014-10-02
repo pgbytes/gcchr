@@ -3,45 +3,40 @@ package com.gcchr.system.core.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gcchr.system.dal.model.User;
-import com.gcchr.system.dal.service.UserService;
+import com.gcchr.system.dal.model.Patient;
+import com.gcchr.system.dal.service.PatientService;
 
 @RestController
 @RequestMapping("/system")
 public class SystemController
 {
-    private final UserService userService;
+    private final PatientService patientService;
 
     @Autowired
-    public SystemController(UserService userService)
+    public SystemController(PatientService patientService)
     {
-        this.userService = userService;
+        this.patientService = patientService;
     }
 
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
     public String controllerStatusCheck()
     {
         return "All is good";
     }
 
-    @RequestMapping(value = "/getallusers", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public List<User> getAllUsers()
+    @RequestMapping(value = "/patients", method = RequestMethod.GET)
+    public List<Patient> getAllUsers()
     {
-        return this.userService.findAll();
+        return this.patientService.findAll();
     }
 
-    @RequestMapping(value = "savesamplepatient", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/savesamplepatient", method = RequestMethod.PUT)
     public void saveSamplePatient()
     {
-        this.userService.saveSamplePatient();
+        this.patientService.saveSamplePatient();
     }
 }
