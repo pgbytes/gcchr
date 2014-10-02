@@ -1,5 +1,7 @@
 package com.gcchr.system.dal.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class LoginService
     public void saveCredentials(Login login)
     {
         this.loginRepository.save(login);
+    }
+
+    public List<Login> fetchAllLogins()
+    {
+        return this.loginRepository.findAll();
     }
 
 }

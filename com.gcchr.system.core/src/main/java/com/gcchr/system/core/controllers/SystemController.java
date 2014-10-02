@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gcchr.system.core.service.AuthenticationService;
+import com.gcchr.system.core.service.UserManagementService;
+import com.gcchr.system.dal.model.Login;
 import com.gcchr.system.dal.model.Patient;
 import com.gcchr.system.dal.service.PatientService;
 
@@ -14,12 +17,16 @@ import com.gcchr.system.dal.service.PatientService;
 @RequestMapping("/system")
 public class SystemController
 {
-    private final PatientService patientService;
+    private final PatientService        patientService;
+    private final UserManagementService userManagementService;
+    private final AuthenticationService authenticationService;
 
     @Autowired
-    public SystemController(PatientService patientService)
+    public SystemController(PatientService patientService, UserManagementService userManagementService, AuthenticationService authenticationService)
     {
         this.patientService = patientService;
+        this.userManagementService = userManagementService;
+        this.authenticationService = authenticationService;
     }
 
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
@@ -37,6 +44,12 @@ public class SystemController
     @RequestMapping(value = "/savesamplepatient", method = RequestMethod.PUT)
     public void saveSamplePatient()
     {
-        this.patientService.saveSamplePatient();
+        this.userManagementService.createSamplePatient();
+    }
+
+    @RequestMapping(value = "/logins", method = RequestMethod.GET)
+    public List<Login> getAllLogins()
+    {
+        return this.authenticationService.fetchAllLogins();
     }
 }

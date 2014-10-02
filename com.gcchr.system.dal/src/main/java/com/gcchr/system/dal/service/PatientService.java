@@ -15,7 +15,6 @@ import com.gcchr.system.dal.model.EmailType;
 import com.gcchr.system.dal.model.Patient;
 import com.gcchr.system.dal.model.Phone;
 import com.gcchr.system.dal.model.PhoneType;
-import com.gcchr.system.dal.model.User;
 import com.gcchr.system.dal.model.UserType;
 import com.gcchr.system.dal.repository.PatientRepository;
 
@@ -30,7 +29,7 @@ public class PatientService
         this.patientRepository = patientRepository;
     }
 
-    public User findById(String id)
+    public Patient findById(String id)
     {
         return this.patientRepository.findOne(id);
     }
@@ -40,12 +39,12 @@ public class PatientService
         return this.patientRepository.findAll();
     }
 
-    public void saveUser(Patient patient)
+    public Patient savePatient(Patient patient)
     {
-        this.patientRepository.save(patient);
+        return this.patientRepository.save(patient);
     }
 
-    public void saveSamplePatient()
+    public Patient createSamplePatient()
     {
         String gcchr_id = "patient0";
         String firstName = "Test";
@@ -66,6 +65,6 @@ public class PatientService
         contact.setPhones(Arrays.asList(phone));
         contact.setEmails(Arrays.asList(email));
         patient.setContact(contact);
-        saveUser(patient);
+        return patient;
     }
 }
