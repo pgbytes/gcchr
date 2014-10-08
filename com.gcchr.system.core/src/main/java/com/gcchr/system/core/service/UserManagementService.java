@@ -1,35 +1,37 @@
 package com.gcchr.system.core.service;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gcchr.system.dal.model.Login;
 import com.gcchr.system.dal.model.Patient;
+import com.gcchr.system.dal.model.UserAccount;
 import com.gcchr.system.dal.model.UserRole;
-import com.gcchr.system.dal.service.LoginService;
 import com.gcchr.system.dal.service.PatientService;
+import com.gcchr.system.dal.service.UserAccountService;
 
 @Service
 public class UserManagementService
 {
-    private final LoginService   loginService;
-    private final PatientService patientService;
+    private final UserAccountService userAccountService;
+    private final PatientService     patientService;
 
     @Autowired
-    public UserManagementService(LoginService loginService, PatientService patientService)
+    public UserManagementService(UserAccountService userAccountService, PatientService patientService)
     {
-        this.loginService = loginService;
+        this.userAccountService = userAccountService;
         this.patientService = patientService;
     }
 
     public void createSamplePatient()
     {
         Patient samplePatient = this.patientService.savePatient(this.patientService.createSamplePatient());
-        Login login = new Login();
-        login.setUsername(samplePatient.getFirstName());
-        login.setPassword("123456");
-        login.setUserRole(UserRole.PATIENT);
-        login.setUser(samplePatient);
-        this.loginService.saveCredentials(login);
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(samplePatient.getFirstName());
+        userAccount.setPassword("123456");
+        userAccount.setUserRoles(Arrays.asList(UserRole.PATIENT));
+        userAccount.setUser(samplePatient);
+        this.userAccountService.saveCredentials(userAccount);
     }
 }

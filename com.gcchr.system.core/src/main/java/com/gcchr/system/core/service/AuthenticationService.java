@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gcchr.system.dal.model.Login;
-import com.gcchr.system.dal.service.LoginService;
+import com.gcchr.system.dal.model.UserAccount;
+import com.gcchr.system.dal.service.UserAccountService;
 
 @Service
 public class AuthenticationService
 {
-    private final LoginService loginService;
+    private final UserAccountService userAccountService;
 
     @Autowired
-    public AuthenticationService(LoginService loginService)
+    public AuthenticationService(UserAccountService userAccountService)
     {
-        this.loginService = loginService;
+        this.userAccountService = userAccountService;
     }
 
-    public List<Login> fetchAllLogins()
+    public List<UserAccount> fetchAllLogins()
     {
-        return this.loginService.fetchAllLogins();
+        return this.userAccountService.fetchAllLogins();
     }
 }

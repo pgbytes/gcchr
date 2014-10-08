@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gcchr.system.core.service.AuthenticationService;
 import com.gcchr.system.core.service.UserManagementService;
-import com.gcchr.system.dal.model.Login;
 import com.gcchr.system.dal.model.Patient;
+import com.gcchr.system.dal.model.UserAccount;
 import com.gcchr.system.dal.service.PatientService;
 
 @RestController
@@ -48,7 +48,7 @@ public class SystemController
     }
 
     @RequestMapping(value = "/logins", method = RequestMethod.GET)
-    public List<Login> getAllLogins()
+    public List<UserAccount> getAllLogins()
     {
         return this.authenticationService.fetchAllLogins();
     }
