@@ -67,4 +67,14 @@ public class PatientService
         patient.setContact(contact);
         return patient;
     }
+
+    public Patient findByIdAndGcchrId(final String id, final String gcchrId)
+    {
+        return null;
+    }
+
+    public Patient saveOrUpdate(Patient patient)
+    {
+        return this.patientRepository.save(patient);
+    }
 }

@@ -24,6 +24,13 @@ public class UserManagementService
         this.patientService = patientService;
     }
 
+    public Patient createOrUpdatePatient(Patient patient)
+    {
+        patient = this.patientService.saveOrUpdate(patient);
+
+        return null;
+    }
+
     public void createSamplePatient()
     {
         Patient samplePatient = this.patientService.savePatient(this.patientService.createSamplePatient());
