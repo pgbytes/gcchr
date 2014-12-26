@@ -1,24 +1,15 @@
 package com.gcchr.system.dal.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
+import com.gcchr.system.dal.model.*;
+import com.gcchr.system.dal.repository.PatientRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gcchr.system.dal.model.Address;
-import com.gcchr.system.dal.model.AddressType;
-import com.gcchr.system.dal.model.Contact;
-import com.gcchr.system.dal.model.Email;
-import com.gcchr.system.dal.model.EmailType;
-import com.gcchr.system.dal.model.Patient;
-import com.gcchr.system.dal.model.Phone;
-import com.gcchr.system.dal.model.PhoneType;
-import com.gcchr.system.dal.model.UserType;
-import com.gcchr.system.dal.repository.PatientRepository;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class PatientService
@@ -73,6 +64,7 @@ public class PatientService
         Phone phone = new Phone(PhoneType.MOBILE, "07630527818");
         Email email = new Email(EmailType.PERSONAL, "testpatient@domain.com");
         Contact contact = new Contact();
+
         contact.setAddresses(Arrays.asList(address));
         contact.setPhones(Arrays.asList(phone));
         contact.setEmails(Arrays.asList(email));
