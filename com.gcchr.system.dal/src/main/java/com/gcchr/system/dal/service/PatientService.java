@@ -1,9 +1,11 @@
 package com.gcchr.system.dal.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,19 +41,29 @@ public class PatientService
         return this.patientRepository.findAll();
     }
 
+    public Patient findByGcchrId(final String gcchrId)
+    {
+        return this.patientRepository.findByGcchrId(gcchrId);
+    }
+
     public Patient savePatient(Patient patient)
+    {
+        return this.patientRepository.save(patient);
+    }
+
+    public Patient saveOrUpdate(Patient patient)
     {
         return this.patientRepository.save(patient);
     }
 
     public Patient createSamplePatient()
     {
-        String gcchr_id = "patient0";
+        String gcchrId = "patient0";
         String firstName = "Test";
         String lastName = "Patient";
         Date dob = new Date();
 
-        Patient patient = new Patient(gcchr_id, firstName, null, lastName, dob, UserType.PATIENT);
+        Patient patient = new Patient(gcchrId, firstName, null, lastName, dob, UserType.PATIENT);
         String street = "Street 175";
         String city = "Lucknow";
         int zipcode = 123456;
@@ -66,5 +78,39 @@ public class PatientService
         contact.setEmails(Arrays.asList(email));
         patient.setContact(contact);
         return patient;
+    }
+
+    public List<Patient> findByName(String firstName, String middleName, String lastName)
+    {
+        return this.patientRepository.findByFirstNameAndMiddleNameAndLastName(firstName, middleName, lastName);
+    }
+
+    public List<Patient> findByNameAndCity(String firstName, String middleName, String lastName, String city)
+    {
+        List<Patient> patientsByName = findByName(firstName, middleName, lastName);
+        return filterPatientsByCity(patientsByName, city);
+    }
+
+    //Todo: write the method using stream api
+    private List<Patient> filterPatientsByCity(List<Patient> patientsByName, String city)
+    {
+        List<Patient> patientsByCity = new ArrayList<>();
+        for (Patient patient : patientsByName)
+        {
+            if (patient.getContact() != null)
+            {
+                if (patient.getContact().getAddresses() != null && patient.getContact().getAddresses().size() > 0)
+                {
+                    for (Address address : patient.getContact().getAddresses())
+                    {
+                        if (StringUtils.equalsIgnoreCase(address.getCity(), city))
+                        {
+                            patientsByCity.add(patient);
+                        }
+                    }
+                }
+            }
+        }
+        return patientsByCity;
     }
 }

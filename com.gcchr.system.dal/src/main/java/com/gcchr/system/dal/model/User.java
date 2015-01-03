@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public abstract class User extends AbstractDocument
 {
-    private final String gcchr_id;
+    private final String gcchrId;
 
     private final String firstName;
 
@@ -25,9 +25,9 @@ public abstract class User extends AbstractDocument
 
     private Contact contact;
 
-    public User(String gcchr_id, String firstName, @Nullable String middleName, String lastName, Date dob, UserType userType)
+    public User(String gcchrId, String firstName, @Nullable String middleName, String lastName, Date dob, UserType userType)
     {
-        this.gcchr_id = gcchr_id;
+        this.gcchrId = gcchrId;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
